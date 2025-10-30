@@ -1,0 +1,121 @@
+{
+  "id" : "p1",
+  "metainfo" : {
+    "label" : "p1",
+    "autoLayout" : false,
+    "version" : 1,
+    "configuration" : {
+      "schema" : {
+        "type" : "record",
+        "fields" : [ ]
+      }
+    },
+    "schedule" : {
+      "cron" : "* 0 2 * * * *",
+      "timeZone" : "GMT",
+      "emailOnSuccess" : false,
+      "emailOnFailure" : false,
+      "emailOnStart" : false,
+      "emails" : [ "email@gmail.com" ],
+      "enabled" : false
+    },
+    "sensorSchedule" : {
+      "enabled" : false,
+      "isDefaultView" : false,
+      "triggers" : { }
+    },
+    "isTranspiledPipeline" : false,
+    "publishDiagnosticMetrics" : false
+  },
+  "processes" : {
+    "Q_9JpyW5No-NIDNmzf8HP$$J024tmmPZlUyvzXxtlPvE" : {
+      "id" : "Q_9JpyW5No-NIDNmzf8HP$$J024tmmPZlUyvzXxtlPvE",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "trade_file_1",
+        "x" : -560,
+        "y" : -280,
+        "phase" : 0
+      },
+      "properties" : {
+        "table" : {
+          "name" : "trade_file_1",
+          "sourceType" : "Table",
+          "sourceName" : "trading.raw",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "qe57QaMeChDtYWjdZ46yf$$hxElS-FhARrFt2YThmE0Q",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "hJ9bG9kKrJbiOJN3OkORc$$qv8YuOnb2jjzRF1C4GuRU",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "K7SXm9Yjzh6wH1nACdjVy$$qHq-NJ65Hu5wRv9Y98jlt" : {
+      "id" : "K7SXm9Yjzh6wH1nACdjVy$$qHq-NJ65Hu5wRv9Y98jlt",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "securities",
+        "x" : -560,
+        "y" : -140,
+        "phase" : 0
+      },
+      "properties" : {
+        "table" : {
+          "name" : "securities",
+          "sourceType" : "Table",
+          "sourceName" : "trading.raw",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "SAyAVgE04oGeMYztxdjdn$$oMelX0nccole2uUg1jtH2",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "Zhhgp3us5Dan4wfSi9Rbl$$ShOaUJPoDlOYD6nau6EAb",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "Pte5QZrEdMj_UqlGXybDJ$$2TnTkzTf11_AHZL4ws6FI" : {
+      "id" : "Pte5QZrEdMj_UqlGXybDJ$$2TnTkzTf11_AHZL4ws6FI",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "trade_file_2",
+        "x" : -560,
+        "y" : 0,
+        "phase" : 0
+      },
+      "properties" : {
+        "table" : {
+          "name" : "trade_file_2",
+          "sourceType" : "Table",
+          "sourceName" : "trading.raw",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "vMXh2xEW2J1uOQAuJ0mij$$30X6A63xeNzGyl9hUGnSd",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "RplVpN38Vg2ZUiLa-OjVr$$xPGth4jsAS36YW6pFh64a",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    }
+  },
+  "connections" : [ ],
+  "component" : "Pipeline"
+}
