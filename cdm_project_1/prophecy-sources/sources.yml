@@ -1,0 +1,178 @@
+---
+version: 2
+sources:
+- name: "trading.raw"
+  database: "trading"
+  schema: "raw"
+  tables:
+  - name: "trade_file_1"
+    config:
+      tags:
+      - "table:trade_file_1"
+    columns:
+    - name: "deal_id"
+      tests:
+      - unique:
+          config:
+            fail_calc: "count(*)"
+            tags:
+            - "test:unique"
+            - "pipeline:p1"
+            - "column:deal_id"
+      dataType:
+        type: "Integer"
+    - name: "security_id"
+      tests:
+      - relationships:
+          config:
+            fail_calc: "count(*)"
+            tags:
+            - "test:relationships"
+            - "pipeline:p1"
+            - "column:security_id"
+          to: "source(\"trading.raw\", \"securities\")"
+          field: "security_id"
+      dataType:
+        type: "Integer"
+    - name: "currency"
+      dataType:
+        type: "String"
+    - name: "portfolio_name"
+      dataType:
+        type: "String"
+    - name: "location"
+      dataType:
+        type: "String"
+    - name: "counterparty_name"
+      dataType:
+        type: "String"
+    - name: "face_value"
+      dataType:
+        type: "Integer"
+    - name: "trader_name"
+      dataType:
+        type: "String"
+    - name: "trade_date"
+      dataType:
+        type: "Integer"
+    - name: "settlement_date"
+      dataType:
+        type: "Integer"
+    - name: "maturity_date"
+      dataType:
+        type: "Integer"
+    - name: "buy_sell"
+      tests:
+      - accepted_values:
+          config:
+            fail_calc: "count(*)"
+            tags:
+            - "test:accepted_values"
+            - "pipeline:p1"
+            - "column:buy_sell"
+          values:
+          - "B"
+          - "S"
+      dataType:
+        type: "String"
+    - name: "trade_type"
+      tests:
+      - accepted_values:
+          config:
+            fail_calc: "count(*)"
+            tags:
+            - "test:accepted_values"
+            - "pipeline:p1"
+            - "column:trade_type"
+          values:
+          - "Bond"
+          - "Repo"
+          - "Loan"
+      dataType:
+        type: "String"
+    type: "table"
+  - name: "securities"
+    config:
+      tags:
+      - "table:securities"
+    columns:
+    - name: "security_id"
+      tests:
+      - unique:
+          config:
+            fail_calc: "count(*)"
+            tags:
+            - "test:unique"
+            - "pipeline:p1"
+            - "column:security_id"
+      dataType:
+        type: "Integer"
+      mappings:
+      - type: "foreign"
+        columnName: "security_id"
+        datasetId: "table/trading_prophecy_dot_raw/trade_file_1"
+        datasetName: "trading.raw"
+      - type: "foreign"
+        columnName: "security_id"
+        datasetId: "table/trading_prophecy_dot_raw/trade_file_2"
+        datasetName: "trading.raw"
+    - name: "security_name"
+      dataType:
+        type: "String"
+    - name: "currency"
+      dataType:
+        type: "String"
+    - name: "start_date"
+      dataType:
+        type: "String"
+    - name: "maturity_date"
+      dataType:
+        type: "String"
+    - name: "issuer_type"
+      tests:
+      - accepted_values:
+          config:
+            fail_calc: "count(*)"
+            tags:
+            - "test:accepted_values"
+            - "pipeline:p1"
+            - "column:issuer_type"
+          values:
+          - "GOV"
+          - "CORP"
+          - "SEMI_GOV"
+      dataType:
+        type: "String"
+    type: "table"
+  - name: "trade_file_2"
+    config:
+      tags:
+      - "table:trade_file_2"
+    columns:
+    - name: "deal_id"
+      dataType:
+        type: "Integer"
+    - name: "security_id"
+      tests:
+      - not_null:
+          config:
+            fail_calc: "count(*)"
+            tags:
+            - "test:not_null"
+            - "pipeline:p1"
+            - "column:security_id"
+      dataType:
+        type: "Integer"
+    - name: "currency"
+      dataType:
+        type: "String"
+    - name: "portfolio_name"
+      dataType:
+        type: "String"
+    - name: "reval_date"
+      dataType:
+        type: "Date"
+    - name: "reval_value"
+      dataType:
+        type: "Integer"
+    type: "table"
